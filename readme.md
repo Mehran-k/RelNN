@@ -3,6 +3,10 @@ Summary
 
 The source code and the datasets used for the experiments in my "Relational Aggregation using First-Order Deep Neural Models" paper to appear at AAAI-18. 
 
+## How to access the datasets:
+
+The MovieLens 1M dataset is in `datasets/ml-1m` folder. It can be also downloaded from the [this link](https://grouplens.org/datasets/movielens/). The Yelp! and KDD datasets are in `datasets/yelp_mc.db` and `datasets/KDD15_123.db` respectively. Please read the terms of use for these datasets before using them.
+
 ## How to run the code:
 
 Make sure you have java JDK installed on your machine. Compile the code using the following command (note that the command starts after $):
