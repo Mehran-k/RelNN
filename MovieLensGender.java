@@ -58,28 +58,29 @@ public class MovieLensGender {
 	}
 	
 	public void readFile() throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("ml-1m/users.dat"));
+		BufferedReader br = new BufferedReader(new FileReader(new File("datasets/ml-1m/users.dat")));
 		
-		while(scanner.hasNext()){
-			String[] line = scanner.nextLine().split("::");
+		for(String nextLine : br.lines().toArray(String[]::new)){
+			String[] line = nextLine.split("::");
 			User user = new User(line[0]);
 			user.gender = line[1];
 			user.age = line[2];
 			user.occupation = line[3];
 			users.put(line[0], user);
 		}
-		scanner = new Scanner(new File("ml-1m/movies.dat"));
-		while(scanner.hasNext()){
-			String[] line = scanner.nextLine().split("::");
+		
+		br = new BufferedReader(new FileReader(new File("datasets/ml-1m/movies.dat")));
+		for(String nextLine : br.lines().toArray(String[]::new)){
+			String[] line = nextLine.split("::");
 			Movie movie = new Movie(line[0]);
 			for(String genre : line[2].split(",")){
 				movie.genre.put(genre, "true");
 			}
 			movies.put(line[0], movie);
 		}
-		scanner = new Scanner(new File("ml-1m/ratings.dat"));
-		while(scanner.hasNext()){
-			String[] line = scanner.nextLine().split("::");
+		br = new BufferedReader(new FileReader(new File("datasets/ml-1m/ratings.dat")));
+		for(String nextLine : br.lines().toArray(String[]::new)){
+			String[] line = nextLine.split("::");
 			users.get(line[0]).moviesRated.put(line[1], "yes");
 			users.get(line[0]).moviesRatedVector.addElement(line[1]);
 			movies.get(line[1]).ratedBy.put(line[0], "yes");

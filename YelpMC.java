@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -39,10 +41,9 @@ public class YelpMC {
 	}
 	
 	public void readFile() throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("yelp_mc.db"));
+		BufferedReader br = new BufferedReader(new FileReader(new File("datasets/yelp_mc.db")));
 		
-		while(scanner.hasNext()){
-			String line = scanner.nextLine();
+		for(String line : br.lines().toArray(String[]::new)){
 			if(line.startsWith("business(")){
 				String busID = line.substring(9, line.length() - 1);
 				businesses.put(busID, new Business(busID));

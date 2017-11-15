@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -44,10 +46,9 @@ public class KDD {
 	}
 	
 	public void readFile() throws FileNotFoundException{
-		Scanner scanner = new Scanner(new File("KDD15_123.db"));
+		BufferedReader br = new BufferedReader(new FileReader(new File("datasets/KDD15_123.db")));
 		
-		while(scanner.hasNext()){
-			String line = scanner.nextLine();
+		for(String line : br.lines().toArray(String[]::new)){
 			if(line.startsWith("item(")){
 				String itemID = line.substring(5, line.length() - 1);
 				items.put(itemID, new Item(itemID));
